@@ -11,7 +11,7 @@ const toursSchema = mongoose.Schema(
       minLength: [3, "Name must me at least 3 characters!"],
       maxLength: [100, "Name is too large!"],
     },
-    image: {
+    imgUrl: {
       type: String,
       required: true,
     },
@@ -30,3 +30,8 @@ const toursSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
+
+//
+const Tour = mongoose.model("Tour", toursSchema);
+
+module.exports = Tour;
