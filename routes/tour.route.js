@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const tourController = require("../controllers/tour.controller");
 
-router.route("/").get().post();
+router.route("/").get(tourController.getTours);
 
 // dynamic :id always should be bottom
 router.route("/:id").patch();

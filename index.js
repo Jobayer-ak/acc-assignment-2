@@ -14,12 +14,13 @@ app.use(express.json());
 app.use(cors());
 
 // routes
+const tourRoute = require("./routes/tour.route");
 
 // db connection
 dbConnection();
 
 // api calling
-app.use("/api/v1/tours")
+app.use("/api/v1/tours", tourRoute)
 
 app.listen(port, ()=>{
     console.log(`App is running on port ${port}`.yellow.bold)
