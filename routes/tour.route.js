@@ -5,6 +5,6 @@ const tourController = require("../controllers/tour.controller");
 router.route("/").get(tourController.getTours).post(tourController.createTour);
 
 // dynamic :id always should be bottom
-router.route("/:id").patch();
+router.route("/:id").get(tourController.getTourById);
 
 module.exports = router;

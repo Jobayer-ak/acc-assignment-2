@@ -13,6 +13,13 @@ exports.getToursService = async(filters, queries) =>{
     return {total, page, result};
 }
 
+// get tour by id service
+exports.getTourByIdService = async (id) =>{
+    const tour = await Tours.findById(id);
+    return tour;
+}
+
+// post method
 exports.createProductService = async(data) =>{
     const tour = new Tours(data);
     return tour;
