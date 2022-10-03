@@ -4,8 +4,12 @@ const tourController = require("../controllers/tour.controller");
 const viewCount = require("../viewCount/viewCount");
 
 router.route("/").get(tourController.getTours).post(tourController.createTour);
+router.route("/cheapest").get(tourController.getCheapestTours);
 
 // dynamic :id always should be bottom
-router.route("/:id").get(viewCount,tourController.getTourById).patch(tourController.updateTourById);
+router
+  .route("/:id")
+  .get(viewCount, tourController.getTourById)
+  .patch(tourController.updateTourById);
 
 module.exports = router;

@@ -5,6 +5,7 @@ const {
   createProductService,
   getTourByIdService,
   updateTourByIdService,
+  getCheapestToursService,
 } = require("../services/tour.services");
 
 // get all tours
@@ -15,11 +16,7 @@ exports.getTours = async (req, res) => {
 
     const queries = {};
 
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(",").join(" ");
-      queries.sortBy = sortBy;
-      console.log(sortBy);
-    }
+    
 
     if (req.query.fields) {
       const fields = req.query.fields.split(",").join(" ");
@@ -110,4 +107,36 @@ exports.updateTourById = async (req, res, next) => {
   }
 };
 
-// get 
+// get top 3 cheapest tours
+exports.getCheapestTours = async(req,res)=>{
+  try {
+
+    const queries = {};
+
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      queries.sortBy = sortBy;
+      console.log(sortBy);
+    }
+
+    if(req.query.limit){
+      const {limit=1} = req.query;
+      queries.limit = parseInt(limit);
+    }
+
+    const tours = await getCheapestToursService();
+
+    res.status(200).json({
+      status: "Success",
+      message: "Cheapest Tours!",
+      data: tours
+    });
+    
+  } catch (error) {
+    res.status(400).json({
+      status: "Failed",
+      message: "Didn't get data!",
+      error: error.message,
+    });
+  }
+}

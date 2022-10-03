@@ -1,3 +1,4 @@
+
 const Tours = require("../models/tours.model");
 
 exports.getToursService = async(filters, queries) =>{
@@ -29,6 +30,14 @@ exports.createProductService = async(data) =>{
 exports.updateTourByIdService = async(tourId, data) =>{
     const tour = await Tours.findById(tourId);
     const result = await tour.set(data).save();
+
+    return result;
+}
+
+// get top 3 cheapest tours
+exports.getCheapestToursService = async()=>{
+
+    const result = await Tours.find({}).limit(3).sort({price: 1});
 
     return result;
 }
