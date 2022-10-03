@@ -24,3 +24,11 @@ exports.createProductService = async(data) =>{
     const tour = new Tours(data);
     return tour;
 }
+
+// update tour
+exports.updateTourByIdService = async(tourId, data) =>{
+    const tour = await Tours.findById(tourId);
+    const result = await tour.set(data).save();
+
+    return result;
+}

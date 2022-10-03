@@ -7,7 +7,7 @@ const toursSchema = mongoose.Schema(
       type: String,
       required: [true, "Please provide a name!"],
       unique: true,
-      minLength: [3, "Name must me at least 3 characters!"],
+      minLength: [3, "Name must bse at least 3 characters!"],
       maxLength: [100, "Name is too large!"],
     },
     imgUrl: {
@@ -27,6 +27,7 @@ const toursSchema = mongoose.Schema(
     },
     viewCount: {
       type: Number,
+      default: 0,
     },
   },
   { timestamps: true }

@@ -4,9 +4,10 @@ const {
   getToursService,
   createProductService,
   getTourByIdService,
+  updateTourByIdService,
 } = require("../services/tour.services");
 
-// get method
+// get all tours
 exports.getTours = async (req, res) => {
   try {
     console.log(req.query);
@@ -27,7 +28,7 @@ exports.getTours = async (req, res) => {
     }
 
     if (req.query.page) {
-      const { page = 1, limit = 2 } = req.query;
+      const { page = 1, limit = 3 } = req.query;
 
       const skip = (page - 1) * parseInt(limit);
       queries.skip = skip;
@@ -68,7 +69,7 @@ exports.getTourById = async (req, res, next) => {
   }
 };
 
-// post method
+// create single tour
 exports.createTour = async (req, res) => {
   try {
     const tour = await createProductService(req.body);
@@ -89,3 +90,24 @@ exports.createTour = async (req, res) => {
     });
   }
 };
+
+// update single tour
+exports.updateTourById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await updateTourByIdService(id, req.body);
+
+    res.status(200).json({
+      status: "Success",
+      message: "Tour is updated successfully!",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Failed",
+      message: "Data is not inserted!",
+      error: error.message,
+    });
+  }
+};
+
+// get 
