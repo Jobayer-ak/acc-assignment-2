@@ -12,3 +12,8 @@ exports.getToursService = async(filters, queries) =>{
 
     return {total, page, result};
 }
+
+exports.createProductService = async(data) =>{
+    const tour = new Tours(data);
+    return tour;
+}

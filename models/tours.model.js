@@ -13,10 +13,12 @@ const toursSchema = mongoose.Schema(
     imgUrl: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,
       required: true,
+      unique: true,
     },
     price: {
       type: Number,
