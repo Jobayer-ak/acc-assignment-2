@@ -30,7 +30,6 @@ exports.createProductService = async(data) =>{
 exports.updateTourByIdService = async(tourId, data) =>{
     const tour = await Tours.findById(tourId);
     const result = await tour.set(data).save();
-
     return result;
 }
 
