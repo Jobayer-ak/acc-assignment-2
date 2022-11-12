@@ -11,7 +11,7 @@ const {
 // get all tours
 exports.getTours = async (req, res) => {
   try {
-    console.log(req.query);
+    
     let filters = { ...req.query };
 
     const queries = {};
@@ -21,7 +21,7 @@ exports.getTours = async (req, res) => {
     if (req.query.fields) {
       const fields = req.query.fields.split(",").join(" ");
       queries.fields = fields;
-      console.log(fields);
+     
     }
 
     if (req.query.page) {
@@ -116,7 +116,7 @@ exports.getCheapestTours = async(req,res)=>{
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
       queries.sortBy = sortBy;
-      console.log(sortBy);
+      
     }
 
     if(req.query.limit){
